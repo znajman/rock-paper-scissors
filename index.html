@@ -8,8 +8,8 @@
 
     <script>
 
-        // Returns Rock or Paper or Scissors randomly when called
-        function getComputerChoice() {
+        // Return Rock or Paper or Scissors randomly when called
+        function getComputerChoice () {
             let choices = ['Rock', 'Paper', 'Scissors'];
             return choices[Math.floor(Math.random()*3)];
         }
@@ -48,7 +48,36 @@
             }
         }
 
+        // Simulate 5 games prompting user to choose from the three symbols
+        function game () {
+            let score = [0,0];
 
+            for (let i = 0; i < 5; i++) {
+                result = playRound(prompt('Choose from rock paper scissors!'),getComputerChoice());
+                alert(result);
+                if (result.search('win') > 0) {
+                    score[0]++;
+                } else if (result.search('lose') > 0) {
+                    score[1]++;
+                }
+            }
+            winner = announceWinner(score);
+            alert(winner);
+            return winner;
+        }
+
+        
+        // Return wether the player won or not based on scores
+        function announceWinner (score) {
+            if (score[0] > score[1]) {
+                return 'Congratulations! You win out of five games.';
+            } else if (score[0] < score[1]) {
+                return 'Better luck next time! You lose out of five games.';
+            } else {
+                return 'It\'s a tie. You tie out of five games';
+            }
+        }
+ 
     </script>
 
 </head>
