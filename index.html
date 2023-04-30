@@ -5,17 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
-
- 
-
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <button id="rock">Rock</button>
-    <button id="paper">Paper</button>
-    <button id="scissors">Scissors</button>
-    <div id="result"></div>
+    <header>Rock Paper Scissors</header>
+    <div class="buttons">
+        <button id="rock">✊</button>
+        <button id="paper">✋</button>
+        <button id="scissors">✌️</button>
+    </div>
+    <div class="scores">
+        <div class="score-container">
+            Your score
+            <div class="yourScore">0</div>
+        </div>
+        <div class="score-container">
+            Computer's score
+            <div class="compScore">0</div>
+        </div>
+    </div>
+    <div id="result"> </div>
+    <button class="reset-game">Reset game</button>
     <script>
-
+        // Store the player's score and the computer's score
+        let score = [0, 0];
         // Return Rock or Paper or Scissors randomly when called
         function getComputerChoice () {
             let choices = ['Rock', 'Paper', 'Scissors'];
@@ -34,46 +47,67 @@
             switch (playerSelection) {
                 case 'rock': 
                     if (computerSelection == 'paper') {
+                        score[1]++;
                         return 'You lose! Paper beats Rock.';
                     } else {
+                        score[0]++;
                         return 'You win! Rock beats Scissors.';
                     }
                     break;
                 case 'paper':
                     if (computerSelection == 'scissors') {
+                        score[1]++;
                         return 'You lose! Scissors beat Paper';
                     } else {
+                        score[0]++;
                         return 'You win! Paper beats Rock.';
                     }
                     break;
                 case 'scissors':
                     if (computerSelection == 'rock') {
+                        score[1]++;
                         return 'You lose! Rock beats Scissors.';
                     } else {
+                        score[0]++;
                         return 'You win! Scissors beat Paper.';
                     }
                     break;
             }
         }
 
+
         
-        // Return wether the player won or not based on scores
-        function announceWinner (score) {
-            if (score[0] > score[1]) {
-                return 'Congratulations! You win out of five games.';
-            } else if (score[0] < score[1]) {
-                return 'Better luck next time! You lose out of five games.';
-            } else {
-                return 'It\'s a tie. You tie out of five games';
+        // Return who won
+        function announceWinner () {
+            if (score[0] == 5) {
+                return 'Congratulations! You win!';
+            } else if (score[1] == 5) {
+                return 'Better luck next time! You lose!';
             }
         }
-        const selection = document.querySelectorAll('button');
+        const selection = document.querySelectorAll('.buttons button');
+        const reset = document.querySelector('.reset-game');
         const result = document.querySelector('#result');
-        console.log(result);
-  
-        selection.forEach(selection => selection.addEventListener('click', function() {
+        const yourScore = document.querySelector('.yourScore');
+        const compScore = document.querySelector('.compScore');
+        
+        selection.forEach(elem => elem.addEventListener('click', function() {
             result.textContent = playRound(this.id, getComputerChoice());
+            yourScore.textContent = score[0];
+            compScore.textContent = score[1];
+            if(announceWinner()) {
+                result.textContent = announceWinner();
+                selection.forEach(elem => elem.disabled = true);
+            }
         }));
+
+        reset.addEventListener('click', function() {
+            score = [0, 0];
+            result.textContent = '';
+            yourScore.textContent = score[0];
+            compScore.textContent = score[1];
+            selection.forEach(elem => elem.disabled = false);
+        });
         
 
     </script>

@@ -1,0 +1,78 @@
+body {
+    background-color: beige;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    gap: 60px;
+}
+
+header {
+    font-size: 5vw;
+    padding-top: 100px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0;
+    flex: 1;
+    min-width: 80px;
+    min-height: 80px;
+    gap: 30px;
+}
+
+.buttons button {
+    background-color: transparent;
+    flex: 1;
+    border: 2px solid black;
+    border-radius: 12px;
+    font-size: 20vw;
+}
+
+button:hover {
+    background-color: antiquewhite;
+
+}
+
+button:active {
+    transform: translate(2px, 2px);
+    box-shadow: 3px 3px #666;
+
+}
+
+.buttons button:disabled {
+    color: transparent;
+    text-shadow: 0 0 0 #ffdc5d;
+    background-color: rgb(128, 128, 128);
+}
+
+.reset-game {
+    margin-bottom: 40px;
+    background-color: transparent;
+    height: 50px;
+    border: 2px solid black;
+    border-radius: 12px;
+    font-size: 20px;
+}
+
+.scores {
+    display: flex;
+    font-size: 3.5vw;
+    min-height: 100px;
+    gap: 40px
+}
+
+.score-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#result {
+    height: 100px;
+    font-size: 3.5vw;
+}
