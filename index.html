@@ -13,7 +13,7 @@
     <button id="rock">Rock</button>
     <button id="paper">Paper</button>
     <button id="scissors">Scissors</button>
-    
+    <div id="result"></div>
     <script>
 
         // Return Rock or Paper or Scissors randomly when called
@@ -67,12 +67,15 @@
                 return 'It\'s a tie. You tie out of five games';
             }
         }
-        let selection = document.querySelectorAll('button');
+        const selection = document.querySelectorAll('button');
+        const result = document.querySelector('#result');
+        console.log(result);
   
         selection.forEach(selection => selection.addEventListener('click', function() {
-            console.log(playRound(this.id, getComputerChoice()));
+            result.textContent = playRound(this.id, getComputerChoice());
         }));
         
+
     </script>
 
 </body>
